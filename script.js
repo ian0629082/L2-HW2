@@ -109,9 +109,9 @@ document.addEventListener('DOMContentLoaded', () => {
        -------------------------------------------------------------------------- */
     const portfolioTabBtns = document.querySelectorAll('.portfolio-tab-btn');
     const classroomGrid = document.getElementById('tab-classroom');
-    const classroomPagination = document.getElementById('classroom-pagination');
+    const classroomPaginations = document.querySelectorAll('.classroom-pagination');
 
-    if (classroomGrid && classroomPagination) {
+    if (classroomGrid && classroomPaginations.length) {
         const cards = Array.from(classroomGrid.querySelectorAll('.project-card'));
         const pageSize = 9;
         const pageCount = Math.ceil(cards.length / pageSize);
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cards.forEach((card, index) => {
                 card.hidden = Math.floor(index / pageSize) + 1 !== page;
             });
-            classroomPagination.querySelectorAll('.portfolio-page-btn').forEach(button => {
+            document.querySelectorAll('.classroom-pagination .portfolio-page-btn').forEach(button => {
                 const isCurrent = Number(button.dataset.page) === page;
                 button.classList.toggle('active', isCurrent);
                 button.setAttribute('aria-current', isCurrent ? 'page' : 'false');
@@ -139,8 +139,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.textContent = page;
                 button.setAttribute('aria-label', `第 ${page} 頁`);
                 button.addEventListener('click', () => showPage(page, true));
-                classroomPagination.appendChild(button);
+                classroomPaginations.forEach(pagination => {
+                    pagination.appendChild(button.cloneNode(true));
+                });
             }
+            document.querySelectorAll('.classroom-pagination .portfolio-page-btn').forEach(button => {
+                button.addEventListener('click', () => showPage(Number(button.dataset.page), true));
+            });
             showPage(1);
         }
     }
@@ -154,8 +159,10 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.portfolio-grid').forEach(grid => {
                 grid.hidden = grid.id !== targetId;
             });
-            if (classroomPagination) {
-                classroomPagination.hidden = targetId !== 'tab-classroom';
+            if (classroomPaginations.length) {
+                classroomPaginations.forEach(pagination => {
+                    pagination.hidden = targetId !== 'tab-classroom';
+                });
             }
         });
     });

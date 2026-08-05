@@ -668,6 +668,11 @@ body.light-theme .skill-chip:hover {
     margin-top: 32px;
 }
 
+.portfolio-pagination--top {
+    margin-top: -16px;
+    margin-bottom: 24px;
+}
+
 .portfolio-page-btn {
     width: 38px;
     height: 38px;
