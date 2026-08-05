@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const pageSize = 9;
         const pageCount = Math.ceil(cards.length / pageSize);
 
-        const showPage = (page) => {
+        const showPage = (page, shouldScroll = false) => {
             cards.forEach((card, index) => {
                 card.hidden = Math.floor(index / pageSize) + 1 !== page;
             });
@@ -125,6 +125,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.classList.toggle('active', isCurrent);
                 button.setAttribute('aria-current', isCurrent ? 'page' : 'false');
             });
+            if (shouldScroll) {
+                classroomGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         };
 
         if (pageCount > 1) {
@@ -135,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.dataset.page = page;
                 button.textContent = page;
                 button.setAttribute('aria-label', `第 ${page} 頁`);
-                button.addEventListener('click', () => showPage(page));
+                button.addEventListener('click', () => showPage(page, true));
                 classroomPagination.appendChild(button);
             }
             showPage(1);
