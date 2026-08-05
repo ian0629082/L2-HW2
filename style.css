@@ -673,6 +673,10 @@ body.light-theme .skill-chip:hover {
     margin-bottom: 24px;
 }
 
+.portfolio-pagination[hidden] {
+    display: none;
+}
+
 .portfolio-page-btn {
     width: 38px;
     height: 38px;
