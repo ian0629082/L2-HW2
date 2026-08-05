@@ -108,6 +108,39 @@ document.addEventListener('DOMContentLoaded', () => {
        4. 作品集分頁籤切換 (Portfolio Tabs)
        -------------------------------------------------------------------------- */
     const portfolioTabBtns = document.querySelectorAll('.portfolio-tab-btn');
+    const classroomGrid = document.getElementById('tab-classroom');
+    const classroomPagination = document.getElementById('classroom-pagination');
+
+    if (classroomGrid && classroomPagination) {
+        const cards = Array.from(classroomGrid.querySelectorAll('.project-card'));
+        const pageSize = 9;
+        const pageCount = Math.ceil(cards.length / pageSize);
+
+        const showPage = (page) => {
+            cards.forEach((card, index) => {
+                card.hidden = Math.floor(index / pageSize) + 1 !== page;
+            });
+            classroomPagination.querySelectorAll('.portfolio-page-btn').forEach(button => {
+                const isCurrent = Number(button.dataset.page) === page;
+                button.classList.toggle('active', isCurrent);
+                button.setAttribute('aria-current', isCurrent ? 'page' : 'false');
+            });
+        };
+
+        if (pageCount > 1) {
+            for (let page = 1; page <= pageCount; page += 1) {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'portfolio-page-btn';
+                button.dataset.page = page;
+                button.textContent = page;
+                button.setAttribute('aria-label', `第 ${page} 頁`);
+                button.addEventListener('click', () => showPage(page));
+                classroomPagination.appendChild(button);
+            }
+            showPage(1);
+        }
+    }
 
     portfolioTabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -118,6 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.portfolio-grid').forEach(grid => {
                 grid.hidden = grid.id !== targetId;
             });
+            if (classroomPagination) {
+                classroomPagination.hidden = targetId !== 'tab-classroom';
+            }
         });
     });
 

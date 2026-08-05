@@ -656,6 +656,37 @@ body.light-theme .skill-chip:hover {
     display: none;
 }
 
+/* 作品卡本身也會在切換頁碼時使用 hidden，需覆蓋卡片的 display: flex。 */
+.project-card[hidden] {
+    display: none !important;
+}
+
+.portfolio-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 32px;
+}
+
+.portfolio-page-btn {
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--card-border);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    font: inherit;
+    transition: all var(--transition-fast) ease;
+}
+
+.portfolio-page-btn:hover,
+.portfolio-page-btn.active {
+    background: var(--primary-gradient);
+    border-color: transparent;
+    color: #ffffff;
+}
+
 .project-card {
     overflow: hidden;
     display: flex;
