@@ -623,13 +623,13 @@ body.light-theme .skill-chip:hover {
 }
 
 .portfolio-tab-btn {
-    padding: 10px 24px;
+    padding: 14px 32px;
     border-radius: 999px;
     border: 1px solid var(--card-border);
     background: transparent;
     color: var(--text-muted);
     font-family: var(--font-body);
-    font-size: 0.95rem;
+    font-size: 1.1rem;
     font-weight: 500;
     cursor: pointer;
     transition: all var(--transition-fast) ease;

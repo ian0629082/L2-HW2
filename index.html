@@ -92,12 +92,12 @@
             </div>
 
             <div class="portfolio-tabs">
-                <button class="portfolio-tab-btn active" data-tab="tab-classroom">課堂實作作品</button>
-                <button class="portfolio-tab-btn" data-tab="tab-project">專案作品</button>
+                <button class="portfolio-tab-btn active" data-tab="tab-project">專案作品</button>
+                <button class="portfolio-tab-btn" data-tab="tab-classroom">課堂實作作品</button>
             </div>
-            <nav class="portfolio-pagination portfolio-pagination--top classroom-pagination" aria-label="課堂實作作品頁碼"></nav>
+            <nav class="portfolio-pagination portfolio-pagination--top classroom-pagination" aria-label="課堂實作作品頁碼" hidden></nav>
 
-            <div class="portfolio-grid" id="tab-classroom">
+            <div class="portfolio-grid" id="tab-classroom" hidden>
                 <!-- AIoT 智慧監控平台 -->
                 <article class="project-card glass-card">
                     <a href="https://aiot-new-five.vercel.app/" target="_blank" rel="noopener" class="project-preview" aria-label="查看 AIoT 溫濕度智慧監控平台">
@@ -328,9 +328,9 @@
                     </div>
                 </article>
             </div>
-            <nav class="portfolio-pagination classroom-pagination" aria-label="課堂實作作品頁碼"></nav>
+            <nav class="portfolio-pagination classroom-pagination" aria-label="課堂實作作品頁碼" hidden></nav>
 
-            <div class="portfolio-grid" id="tab-project" hidden>
+            <div class="portfolio-grid" id="tab-project">
                 <!-- Carbon Insight AI -->
                 <article class="project-card glass-card">
                     <a href="https://carbon-insight-ai.streamlit.app/" target="_blank" rel="noopener" class="project-preview" aria-label="查看碳排資料管理與去識別準備工具">

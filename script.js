@@ -113,6 +113,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (classroomGrid && classroomPaginations.length) {
         const cards = Array.from(classroomGrid.querySelectorAll('.project-card'));
+        const featuredClassroomTitles = [
+            '即時天氣視覺化儀表板',
+            '電影爬蟲練習',
+            'Flappy-Bird-Neuro'
+        ];
+        const lastClassroomTitle = '十大機器學習演算法動態學習平台';
+        const classroomCardOrder = (card) => {
+            const title = card.querySelector('.project-title')?.textContent.trim();
+            const featuredIndex = featuredClassroomTitles.indexOf(title);
+
+            if (featuredIndex !== -1) return featuredIndex;
+            if (title === lastClassroomTitle) return 99;
+            return 10;
+        };
+
+        cards.sort((a, b) => classroomCardOrder(a) - classroomCardOrder(b));
+        cards.forEach(card => classroomGrid.appendChild(card));
         const pageSize = 9;
         const pageCount = Math.ceil(cards.length / pageSize);
 
