@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>網站統計後台 | IAN.DEV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <main class="shell">
+        <section class="login-card" id="login-view">
+            <a class="brand" href="index.html">IAN<span>.DEV</span></a>
+            <p class="eyebrow">PRIVATE ANALYTICS</p>
+            <h1>網站統計後台</h1>
+            <p class="intro">請登入管理員帳號以查看瀏覽與作品點擊資料。</p>
+            <form id="login-form">
+                <label>
+                    Email
+                    <input id="email" type="email" autocomplete="email" required placeholder="you@example.com">
+                </label>
+                <label>
+                    密碼
+                    <input id="password" type="password" autocomplete="current-password" required placeholder="輸入密碼">
+                </label>
+                <p class="form-message" id="login-message" role="alert"></p>
+                <button class="primary-button" type="submit" id="login-button">登入後台 <i class="fa-solid fa-arrow-right"></i></button>
+            </form>
+        </section>
+
+        <section class="dashboard" id="dashboard-view" hidden>
+            <header class="dashboard-header">
+                <div>
+                    <a class="brand" href="index.html">IAN<span>.DEV</span></a>
+                    <p class="eyebrow">PRIVATE ANALYTICS</p>
+                    <h1>網站統計</h1>
+                    <p class="updated" id="updated-at">讀取中…</p>
+                </div>
+                <div class="header-actions">
+                    <a class="back-link" href="index.html"><i class="fa-solid fa-arrow-left"></i> 返回網站</a>
+                    <button class="logout-button" id="logout-button">登出</button>
+                </div>
+            </header>
+
+            <div class="metric-grid">
+                <article class="metric-card accent-purple">
+                    <span class="metric-label">今日不重複訪客</span>
+                    <strong id="today-visitors">—</strong>
+                    <small>以台北時區計算</small>
+                </article>
+                <article class="metric-card accent-blue">
+                    <span class="metric-label">累計不重複訪客</span>
+                    <strong id="total-visitors">—</strong>
+                    <small>依每日訪客次數累計</small>
+                </article>
+                <article class="metric-card accent-pink">
+                    <span class="metric-label">今日作品點擊</span>
+                    <strong id="today-clicks">—</strong>
+                    <small>課堂實作與專案作品</small>
+                </article>
+                <article class="metric-card accent-cyan">
+                    <span class="metric-label">累計作品點擊</span>
+                    <strong id="total-clicks">—</strong>
+                    <small>所有作品外部連結</small>
+                </article>
+            </div>
+
+            <section class="table-card">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">PROJECT PERFORMANCE</p>
+                        <h2>作品連結點擊</h2>
+                    </div>
+                    <button class="refresh-button" id="refresh-button"><i class="fa-solid fa-rotate-right"></i> 重新整理</button>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>作品</th><th>分類</th><th>今日點擊</th><th>累計點擊</th></tr></thead>
+                        <tbody id="project-stats"><tr><td colspan="4" class="loading">讀取資料中…</td></tr></tbody>
+                    </table>
+                </div>
+                <p class="dashboard-message" id="dashboard-message" role="alert"></p>
+            </section>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
